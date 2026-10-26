@@ -1,0 +1,56 @@
+# Arctic Talent – Apache-asetukset (julkaisuvaiheeseen)
+# Tarkista ennen käyttöönottoa, että palvelin on Apache ja mod_rewrite on käytössä.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+AddType image/svg+xml .svg
+AddType image/webp .webp
+
+RewriteEngine On
+
+# 1) HTTPS + www ensisijaiseksi, polku säilyy
+#    (esim. https://arctictalent.com/next-chapter/ -> https://www.arctictalent.com/next-chapter/)
+#    Koskee vain arctictalent.com-osoitteita, joten sama tiedosto ei ohjaa esikatselua tuotantoon.
+RewriteCond %{HTTP_HOST} ^arctictalent\.com$ [NC]
+RewriteRule ^ https://www.arctictalent.com%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.arctictalent\.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://www.arctictalent.com%{REQUEST_URI} [R=301,L]
+
+# 2) Next Chapter ilman loppukauttaviivaa
+RewriteRule ^next-chapter$ /next-chapter/ [R=301,L]
+
+# 3) Vanhan Adobe Muse -sivuston osoitteet
+#    Täydennä lista varmuuskopion tiedostolistasta ennen julkaisua.
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^arctictalent-suomeksi\.html$ / [R=301,L]
+#    Englannin- ja vironkielisille sivuille ei ole vastinetta -> 410 Gone
+RewriteRule ^arctictalent-in-english\.html$ - [G,L]
+RewriteRule ^arctictalent-eesti\.html$ - [G,L]
+#    Muut vanhat juuritason .html-sivut (paitsi 404.html) -> etusivulle
+RewriteCond %{REQUEST_URI} !^/404\.html$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^[^/]+\.html$ / [R=301,L]
+#    Muse-sivuston kuvat, skriptit ja tyylit -> 410
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(images|scripts|css)/ - [G,L]
+
+# 4) Välimuisti: HTML aina tuore, kuvat ja tyylit pidempään
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|webp|png|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.css$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css image/svg+xml application/xml text/plain
+</IfModule>
