@@ -17,6 +17,9 @@ RewriteCond %{HTTP_HOST} ^arctictalent\.com$ [NC]
 RewriteRule ^ https://www.arctictalent.com%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} ^www\.arctictalent\.com$ [NC]
 RewriteCond %{HTTPS} off
+#    Cloudflare-välitys: älä ohjaa, jos selain käyttää jo HTTPS:ää (estää silmukan Flexible-tilassa)
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteCond %{HTTP:CF-Visitor} !"scheme":"https" [NC]
 RewriteRule ^ https://www.arctictalent.com%{REQUEST_URI} [R=301,L]
 
 # 2) Next Chapter ilman loppukauttaviivaa
