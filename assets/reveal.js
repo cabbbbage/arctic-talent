@@ -8,13 +8,14 @@
     return;
   }
   var selectors = [
-    '.hero-copy > *', '.horizon', '.hero-bottom',
-    '.next-hero .intro > div',
-    '.section-top', '.section > .eyebrow', '.intro > *',
-    '.strategy-words > div', '.question-grid > article', '.partner-steps > div',
-    '.process > div', '.process li', '.session-detail', '.outcome', '.package-price',
-    '.bio-reflection', '.invest', '.confidential', '.experience-strip',
-    '.quiet-note', '.section > .text-link'
+    '.hero-copy > *', '.hero-art',
+    '.opening-body', '.running-head', '.split > *', '.door',
+    '.timeline > li', '.steps > li', '.closing-note',
+    '.detail-main', '.detail-aside', '.price .wrap',
+    '.grid-2 > div', '.quote .wrap',
+    '.bio-photo', '.bio-text', '.note-box', '.numbered > div',
+    '.reflection .wrap > *', '.invest .wrap > *',
+    '.contact-text', '.contact-card'
   ].join(',');
   var els = Array.prototype.slice.call(document.querySelectorAll(selectors));
   els.forEach(function (el) {
