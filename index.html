@@ -27,8 +27,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/style.css?v=3">
+  <link rel="stylesheet" href="/style.css?v=4">
   <script src="/assets/reveal.js?v=2" defer></script>
+  <script src="/assets/menu.js?v=1" defer></script>
 </head>
 
 <body>
@@ -37,7 +38,8 @@
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="/" aria-label="Arctic Talent – etusivu"><img src="/assets/ArcticTalent.svg?v=5" alt="" width="518" height="129"></a>
-      <nav class="nav" aria-label="Päänavigaatio">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="paavalikko"><span class="nav-toggle-label">Valikko</span><span class="nav-toggle-icon" aria-hidden="true"></span></button>
+      <nav class="nav" id="paavalikko" aria-label="Päänavigaatio">
         <a href="/next-chapter/">Next Chapter</a>
         <a href="#strategia">Strategiatyö</a>
         <a href="#meista">Jari Arffman</a>
