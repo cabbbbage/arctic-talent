@@ -91,7 +91,7 @@ em { font-style: normal; }
   align-items: center;
   gap: 16px;
   min-height: 56px;
-  padding: 0 26px;
+  padding: 1rem;
   background: var(--blue);
   color: #fff;
   border: 1px solid var(--blue);
