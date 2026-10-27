@@ -7,6 +7,7 @@
 /* ===== Muuttujat ===== */
 :root {
   --ink: #172e47;
+  --logo-color: var(--ink);
   --muted: #526477;
   --soft: #6b7f95;
   --line: #d9e1e8;
@@ -117,13 +118,14 @@ em { font-style: normal; }
 .site-header { padding: 22px var(--pad); border-bottom: 1px solid #e3e9ef; }
 .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; }
 .logo { display: block; line-height: 0; }
-.logo img { display: block; height: 40px; width: auto; }
+.logo-svg { display: block; width: auto; color: var(--logo-color); }
+.logo .logo-svg { height: 40px; }
 .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; }
 .nav a:not(.btn) { text-decoration: none; }
 
 .site-footer { padding: 36px var(--pad); border-top: 1px solid #e3e9ef; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; font-size: 14px; color: var(--muted); }
-.site-footer .logo img { height: 30px; }
+.site-footer .logo .logo-svg { height: 30px; }
 
 /* ===== Käyntikortin paneeli (sininen, aallot, aurinko) ===== */
 .panel { position: relative; overflow: hidden; background: var(--blue); }
@@ -224,7 +226,7 @@ em { font-style: normal; }
   box-shadow: 0 24px 48px rgba(23, 46, 71, 0.10);
   transform: rotate(-1.5deg);
 }
-.sheet img { display: block; height: 26px; width: auto; }
+.sheet .logo-svg { height: 26px; }
 .sheet .label { margin-top: 28px; font-size: 11px; }
 .sheet-title { margin-top: 22px; font-family: var(--heading); font-size: 18px; }
 .sheet-lines { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
@@ -306,7 +308,7 @@ em { font-style: normal; }
   transform: rotate(1.2deg);
 }
 .bcard-body { flex: 1 1 auto; min-width: 0; padding: 7% 7% 6%; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
-.bcard-body > img { align-self: flex-start; height: 30px; width: auto; }
+.bcard-body > .logo-svg { align-self: flex-start; height: 30px; }
 .bcard-name { font-family: var(--heading); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.1; }
 .bcard-degree { margin-top: 6px; font-size: 13px; letter-spacing: 0.06em; color: var(--blue); }
 .bcard-role { margin-top: 2px; font-size: 13px; color: var(--muted); }
@@ -352,14 +354,14 @@ em { font-style: normal; }
 
 /* ===== Pienet näytöt ===== */
 @media (max-width: 600px) {
-  .logo img { height: 32px; }
-  .site-footer .logo img { height: 26px; }
+  .logo .logo-svg { height: 32px; }
+  .site-footer .logo .logo-svg { height: 26px; }
   .nav { gap: 6px 20px; font-size: 14px; }
   .hero-art { min-height: 500px; }
   .hero-portrait { width: 60%; bottom: 32px; }
   .hero-art--home { min-height: 380px; }
   .bcard { aspect-ratio: auto; min-height: 220px; transform: none; }
-  .bcard-body > img { height: 24px; }
+  .bcard-body > .logo-svg { height: 24px; }
   .sheet { transform: none; padding: 28px; }
   .year { flex-basis: 100%; }
 }
